@@ -1,0 +1,106 @@
+name: Automatic Transfer Switch
+products:
+  - id: bf97c4olfaezqqyq
+    manufacturer: Moes
+    model: BAT-80A
+    
+entities:
+  - entity: select
+    name: Power Mode
+    icon: "mdi:state-machine"
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: automatic_mode
+            value: Auto
+          - dps_val: inverter_power
+            value: Inverter
+          - dps_val: crid_power
+            value: Grid
+
+  - entity: sensor
+    name: Total Energy
+    class: energy
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Grid Voltage
+    class: voltage
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Inverter Voltage
+    class: voltage
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Load Power
+    class: power
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: W
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Load Current
+    class: current
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Battery Voltage
+    class: voltage
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Fault Alarm
+    class: enum
+    category: diagnostic
+    icon: "mdi:alert-circle"
+    dps:
+      - id: 7
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Grid Fault
+          - dps_val: 2
+            value: Inverter Fault
+          - dps_val: 3
+            value: Grid & Inverter Fault
